@@ -1,0 +1,25 @@
+syntax="proto2";
+package example;
+
+option cc_generic_services = true;
+
+message EchoRequest {
+      required int32 value = 1;
+};
+
+message ComboRequest {
+    repeated EchoRequest requests = 1;
+};
+
+message EchoResponse {
+      required int32 value = 1;
+};
+
+message ComboResponse {
+    repeated EchoResponse responses = 1;
+};
+
+service EchoService {
+      rpc Echo(EchoRequest) returns (EchoResponse);
+      rpc ComboEcho(ComboRequest) returns (ComboResponse);
+};
